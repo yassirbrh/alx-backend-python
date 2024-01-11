@@ -7,6 +7,9 @@
 
 def concat(str1: str, str2: str) -> str:
     '''
-        Add two values and return the result.
+        concat: function
+        @str1: First string value.
+        @str2: Second string value.
+        return: The concatenated string of str1 and str2
     '''
     return str(str1 + str2)
