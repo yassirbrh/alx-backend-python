@@ -7,6 +7,9 @@
 
 def add(a: float, b: float) -> float:
     '''
-        Add two values and return the result.
+        add: function
+        @a: First float value.
+        @b: Second float value.
+        return: The sum of the two values a float.
     '''
     return float(a + b)
