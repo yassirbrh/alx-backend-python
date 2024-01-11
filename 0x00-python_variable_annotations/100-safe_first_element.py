@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 '''
-    Type-annotated function element_length that takes an Iterable
-    and returns a list of tuples containing the iterable elements
-    and their lengths.
+    Type-annotated function safe_first_element that takes a list
+    and returns the first element of this list.
 '''
 from typing import Any, Sequence, Union
 
