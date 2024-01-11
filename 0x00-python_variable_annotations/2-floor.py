@@ -7,6 +7,8 @@
 
 def floor(n: float) -> int:
     '''
-        Add two values and return the result.
+        floor: function
+        @n: float value.
+        return: the integer value of the floor.
     '''
     return int(n)
