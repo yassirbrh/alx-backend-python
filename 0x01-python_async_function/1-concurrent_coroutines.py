@@ -25,4 +25,4 @@ async def wait_n(n: int, max_delay: int = 10) -> List[float]:
         wait_value = random.uniform(0, max_delay)
         await asyncio.sleep(wait_value)
         list_of_wait_values.append(wait_value)
-    return list_of_wait_values
+    return sorted(list_of_wait_values)
