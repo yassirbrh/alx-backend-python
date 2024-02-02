@@ -3,6 +3,7 @@
     TestAccessNestedMap class that inherits from unittest.TestCase.
 '''
 from parameterized import parameterized
+from typing import Dict, Tuple, Union
 import unittest
 
 
@@ -18,7 +19,12 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
-    def test_access_nested_map(self, nested_map, path, output):
+    def test_access_nested_map(
+            self,
+            nested_map: Dict,
+            path: Tuple[str],
+            output: Union[int, Dict]
+            ) -> None:
         '''
             test_access_nested_map: function
             @self: class constructor.
