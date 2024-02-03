@@ -5,9 +5,11 @@
 from parameterized import parameterized
 from typing import Dict, Tuple, Union
 import unittest
+from unittest.mock import Mock, patch
 
 
 access_nested_map = __import__('utils').access_nested_map
+get_json = __import__('utils').get_json
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -55,6 +57,30 @@ class TestAccessNestedMap(unittest.TestCase):
         '''
         with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
+
+
+class TestGetJson(unittest.TestCase):
+    '''
+        class TestGetJson that inherits from unittest.TestCase.
+    '''
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+    ])
+    @patch('requests.get')
+    def test_get_json(self, test_url, test_payload, mock_get):
+        '''
+            test_get_json: function
+            @self: class constructor.
+            @mock_get: mocked function
+            return: the Mock object.
+        '''
+        mock_object = Mock()
+        mock_object.json = Mock(return_value=test_payload)
+        mock_get.return_value = mock_object
+        result = get_json(test_url)
+        mock_get.assert_called_once_with(test_url)
+        self.assertEqual(result, test_payload)
 
 
 if __name__ == '__main__':
