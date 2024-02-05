@@ -52,3 +52,46 @@ class TestGithubOrgClient(unittest.TestCase):
                 GithubOrgClient("google")._public_repos_url,
                 "https://api.github.com/users/google/repos",
             )
+
+    @patch("client.get_json")
+    def test_public_repos(self, mocked_get_json: MagicMock) -> None:
+        '''
+            test_public_repos: function
+            @self: class constructor.
+            @mocked_get_json: MagicMock instance.
+            return: No return.
+        '''
+        test_payload = {
+            'repos_url': '',
+            'repos': [
+                {
+                    "id": 460600860,
+                    "node_id": "R_kgDOG3Q2HA",
+                    "name": ".allstar",
+                    "full_name": "google/.allstar",
+                    "private": False,
+                },
+                {
+                    "id": 170908616,
+                    "node_id": "MDEwOlJlcG9zaXRvcnkxNzA5MDg2MTY=",
+                    "name": ".github",
+                    "full_name": "google/.github",
+                    "private": False,
+                }
+            ]
+        }
+        mocked_get_json.return_value = test_payload["repos"]
+        with patch(
+                "client.GithubOrgClient._public_repos_url",
+                new_callable=PropertyMock,
+                ) as mocked_public_repos_url:
+            mocked_public_repos_url.return_value = test_payload["repos_url"]
+            self.assertEqual(
+                GithubOrgClient("google").public_repos(),
+                [
+                    ".allstar",
+                    ".github",
+                ],
+            )
+            mock_public_repos_url.assert_called_once()
+        mocked_get_json.assert_called_once()
