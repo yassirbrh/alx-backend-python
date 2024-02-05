@@ -62,7 +62,7 @@ class TestGithubOrgClient(unittest.TestCase):
             return: No return.
         '''
         test_payload = {
-            'repos_url': '',
+            'repos_url': 'https://api.github.com/users/google/repos',
             'repos': [
                 {
                     "id": 460600860,
