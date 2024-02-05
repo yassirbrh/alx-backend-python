@@ -93,5 +93,5 @@ class TestGithubOrgClient(unittest.TestCase):
                     ".github",
                 ],
             )
-            mock_public_repos_url.assert_called_once()
+            mocked_public_repos_url.assert_called_once()
         mocked_get_json.assert_called_once()
